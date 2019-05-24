@@ -27,7 +27,7 @@
     <view class="page__bd">
       <view class="weui-cells weui-cells_after-title">
         <!-- 已登录 -->
-        <navigator class="weui-cell" if="{{ user }}" url>
+        <navigator class="weui-cell" wx:if="{{ user }}" url='/pages/users/edit'>
           <view class="weui-cell__hd avatar-wrap">
             <image class="avatar" src="{{ user.avatar }}" />
           </view>
@@ -38,7 +38,7 @@
           <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>
         <!-- 未登录 -->
-        <navigator class="weui-cell" else url="/pages/auth/login">
+        <navigator class="weui-cell" wx:else url="/pages/auth/login">
           <view class="weui-cell__hd avatar-wrap">
             <image src="/images/user.png" class="avatar" />
           </view>
@@ -77,7 +77,7 @@
   import wepy from 'wepy'
   import api from '@/utils/api'
 
-  export default class User extends wepy.page {
+  export default class UserMe extends wepy.page {
     config = {
       navigationBarTitleText: '我的'
     }
