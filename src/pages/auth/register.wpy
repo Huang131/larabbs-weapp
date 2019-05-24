@@ -216,7 +216,7 @@
         // 参数中增加code,用于获取openid绑定当前用户
         formData.code = loginData.code
 
-        console.log("formate:", formData)
+        console.log('formate:', formData)
         let registerResponse = await api.request({
           url: 'weapp/users',
           method: 'POST',
