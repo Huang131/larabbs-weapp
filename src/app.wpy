@@ -47,7 +47,7 @@
   export default class extends wepy.app {
     config = {
       pages: [
-        'pages/index',
+        'pages/topics/index',
         'pages/users/me',
         'pages/users/edit',
         'pages/auth/login',
@@ -61,7 +61,7 @@
       },
       tabBar: {
         list: [{
-          pagePath: 'pages/index',
+          pagePath: 'pages/topics/index',
           text: '首页',
           iconPath: 'images/index.png',
           selectedIconPath: 'images/index_selected.png'
@@ -85,9 +85,9 @@
     }
 
     onLaunch() {
-      wepy.login().then(res => {
-        console.log('login:', res)
-      })
+      // wepy.login().then(res => {
+      //   console.log('login:', res)
+      // })
     }
 
     // 获取当前登录用户信息

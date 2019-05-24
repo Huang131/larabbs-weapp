@@ -126,7 +126,7 @@ export default class UserEdit extends wepy.page {
         data: formData
       })
 
-      console.log('editResponse:', editResponse)
+      // console.log('editResponse:', editResponse)
       // 设置报错信息
       if (editResponse.statusCode === 422) {
         this.errors = editResponse.data.errors
@@ -154,6 +154,7 @@ export default class UserEdit extends wepy.page {
     }
   }// end submit
 
+  // 事件处理放在 methods 里面，生命周期方法放在外面
   methods ={
     async updateAvatar() {
       // 选择头像图片
