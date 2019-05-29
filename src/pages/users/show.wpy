@@ -56,9 +56,9 @@
 </template>
 
 <script>
-import wepy from 'wepy';
-import api from '@/utils/api';
-import util from '@/utils/util';
+import wepy from 'wepy'
+import api from '@/utils/api'
+import util from '@/utils/util'
 
 export default class UserShow extends wepy.page {
   data = {
@@ -67,31 +67,31 @@ export default class UserShow extends wepy.page {
   };
   async onLoad(options) {
     try {
-      let userResponse = await api.request('users/' + options.id);
+      let userResponse = await api.request('users/' + options.id)
 
       if (userResponse.statusCode === 200) {
-        this.user = userResponse.data;
+        this.user = userResponse.data
 
         // 格式化注册时间
-        this.user.created_at_diff = util.diffForHumans(this.user.created_at);
+        this.user.created_at_diff = util.diffForHumans(this.user.created_at)
         // 格式化最后活跃时间
         this.user.last_actived_at_diff = util.diffForHumans(
           this.user.last_actived_at
-        );
+        )
 
-        this.$apply();
+        this.$apply()
 
         // 动态设置页面标题
         wepy.setNavigationBarTitle({
           title: this.user.name + ' 的主页'
-        });
+        })
       }
     } catch (err) {
-      console.log(err);
+      console.log(err)
       wepy.showModal({
         title: '提示',
         content: '服务器错误，请联系管理员'
-      });
+      })
     }
   }
   onShareAppMessage(res) {
@@ -104,13 +104,13 @@ export default class UserShow extends wepy.page {
       imageUrl: this.user.avatar,
       success: function(res) {
         // 转发成功
-        console.log(res);
+        console.log(res)
       },
       fail: function(res) {
         // 转发失败
-        console.log(res);
+        console.log(res)
       }
-    };
+    }
   }
 }
 </script>

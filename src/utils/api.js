@@ -1,11 +1,9 @@
 import wepy from 'wepy'
 
-// 服务器接口地址
 const host = 'http://larabbs.test/api'
 
 // 普通请求
 const request = async (options, showLoading = true) => {
-  // 简化开发,如果传入字符串则转换成对象
   if (typeof options === 'string') {
     options = {
       url: options
@@ -19,7 +17,7 @@ const request = async (options, showLoading = true) => {
   }
   // 拼接请求地址
   options.url = host + '/' + options.url
-  // 调用小程序的request方法
+  // 调用小程序的 request 方法
   let response = await wepy.request(options)
 
   if (showLoading) {
@@ -31,7 +29,7 @@ const request = async (options, showLoading = true) => {
   if (response.statusCode === 500) {
     wepy.showModal({
       title: '提示',
-      content: '服务器错误,请联系管理员或重试'
+      content: '服务器错误，请联系管理员或重试'
     })
   }
   return response
@@ -39,7 +37,7 @@ const request = async (options, showLoading = true) => {
 
 // 登录
 const login = async (params = {}) => {
-  // code只能使用一次,所以每次单独调用
+  // code 只能使用一次，所以每次单独调用
   let loginData = await wepy.login()
 
   // 参数中增加code
@@ -51,8 +49,8 @@ const login = async (params = {}) => {
     data: params,
     method: 'POST'
   })
-  // console.log(authResponse)
-  // 登录成功,记录token信息
+
+  // 登录成功，记录 token 信息
   if (authResponse.statusCode === 201) {
     wepy.setStorageSync('access_token', authResponse.data.access_token)
     wepy.setStorageSync('access_token_expired_at', new Date().getTime() + authResponse.data.expires_in * 1000)
